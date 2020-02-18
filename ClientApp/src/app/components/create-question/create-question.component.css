@@ -1,0 +1,11 @@
+.button [type='submit']{
+  display: inline;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+.button [type='button']{
+  display: inline;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+

@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend>Форма реєстрації</legend>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="textinput">Ім'я</label>
+    <div class="col-md-6">
+    <input id="textinput" name="textinput" type="text" placeholder="Ім'я" formControlName="name" class="form-control input-md">
+
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="textinput">Email</label>
+    <div class="col-md-6">
+    <input id="textinput" name="textinput" type="text" formControlName="email" placeholder="Email" class="form-control input-md">
+
+    </div>
+  </div>
+
+  <!-- Password input-->
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="passwordinput">Пароль</label>
+    <div class="col-md-6">
+      <input id="passwordinput" name="passwordinput" formControlName="password" type="password" placeholder="пароль" class="form-control input-md">
+
+    </div>
+  </div>
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="selectbasic">Роль</label>
+    <div class="col-md-6">
+      <select id="selectbasic" name="selectbasic" formControlName="role" class="form-control">
+        <option value="1">Адміністратор</option>
+        <option value="2">Користувач</option>
+      </select>
+    </div>
+  </div>
+  <!-- Button (Double) -->
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="button1id"></label>
+    <div class="col-md-8">
+      <button id="button1id" type="submit" name="button1id" class="btn btn-success">Реєстрація</button>&nbsp;
+      <button id="button2id"type="button" (click)="back()" name="button2id" class="btn btn-danger">Назад</button>
+    </div>
+  </div>
+  </fieldset>
+  </form>

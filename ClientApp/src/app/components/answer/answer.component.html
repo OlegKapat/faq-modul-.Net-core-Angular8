@@ -1,0 +1,20 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <h3>Питання: {{questionTitle}}</h3>
+    </div>
+    <div class="form-group">
+      <label for="text">Текст відповіді</label>
+      <input id="text" class="form-control" formControlName='text'>
+    </div>
+    <div class="form-group">
+      <label for="author">Автор</label>
+      <input id="author" class="form-control" formControlName='author'>
+      <div class="button form-group">
+        <input type="submit" class=" btn btn-primary" value="Зберегти">
+        <input type="button" (click)="onUpdate()" class="btn btn-primary" value="Коригувати">
+        <input type="button" (click)="onDelete()" class="btn btn-primary" value="Видалити">
+      </div>
+    </div>
+  </form>
+</div>
