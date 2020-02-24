@@ -4,6 +4,7 @@ import { QuestionService } from 'src/app/shared/interfaces/services/question.ser
 import { Router, ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/shared/interfaces/interfaces';
 import { EventEmitter } from 'protractor';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-question',
@@ -14,11 +15,12 @@ export class CreateQuestionComponent implements OnInit, AfterViewInit {
 
   constructor(private questionService:QuestionService, private router:Router, private route:ActivatedRoute) { }
    form:FormGroup;
+   id:number;
    questionById:Question;
      ngOnInit() {
 
     this.form=new FormGroup({
-      id:new FormControl(),
+      id:new FormControl(+''),
       title:new FormControl('',Validators.required),
       text:new FormControl('',Validators.required),
       author:new FormControl('',Validators.required),
@@ -35,25 +37,19 @@ export class CreateQuestionComponent implements OnInit, AfterViewInit {
         })
    }
    ngAfterViewInit(){
-    var id=+this.route.snapshot.queryParams['id']
-    if(id){
-      this.questionService.selectById(id).subscribe((res)=>{
-        let object=Object.assign({},res)
-        this.form.setValue(object);
+    this.route.params.pipe(switchMap(params=>this.questionService.selectById(params['id']))).subscribe((res)=>{
+      let object=Object.assign({},res)
+      this.form.setValue(object);
+    })
+}
 
-      }
-      )
-    }
-   }
+
   onUpdate(){
-    var id=+this.route.snapshot.queryParams['id']
-    this.questionService.updateById(id, this.form.value).subscribe(()=>console.log("Все добре")
-    )
+   this.route.params.pipe(switchMap(params=>this.questionService.updateById(params['id'],this.form.value))).subscribe(()=>console.log("Все добре")
+   )
   }
-  onDelete(){
-    var id=+this.route.snapshot.queryParams['id']
-    this.questionService.deleteById(id).subscribe(()=>console.log("Видалено")
-    );
-
+onDelete(){
+this.route.params.pipe(switchMap(params=>this.questionService.deleteById(params['id']))).subscribe(()=>console.log("Видалено")
+)
   }
 }

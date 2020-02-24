@@ -3,7 +3,7 @@ export interface Question{
   title:string,
   text:string,
   author:string,
-  userId?:string,
+  userId:number,
   description:string,
   createdDate?:Date,
   lastModifiedDate?:Date
@@ -27,7 +27,7 @@ export interface Auth{
 export interface Answer{
   id?:number,
   text:string,
-  questionId:string,
+  questionId:number,
   author:string,
   createdDate?:Date,
   lastModifiedDate?:Date

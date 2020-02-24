@@ -1,5 +1,5 @@
 <section>
   <ul>
-    <li *ngFor="let ques of question" ><a [routerLink]="" (click)="onSelect(ques)">{{ques.title}}</a></li>
+    <li   appModal (click)=" showModal(ques.id)"  *ngFor="let ques of question" ><a [routerLink]="[]">{{ques.title}}</a></li>
   </ul>
 </section>

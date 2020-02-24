@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Answer } from '../interfaces';
@@ -12,5 +13,8 @@ export class AnswerService {
 
   sendData(data):Observable<Answer>{
     return this.http.post<Answer>('/api/answer',data)
+  }
+  getById(id):Observable<Answer>{
+    return this.http.get<Answer>(`api/answer/${id}`)
   }
 }

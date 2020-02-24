@@ -1,0 +1,9 @@
+<div class="backdrop"></div>
+<div #modal id="modals">
+  <nav class="navbar">
+    <h1>Виберіть дію</h1>
+  </nav>
+     <a [routerLink]="" (click)="close.emit()" >Повернутись на головну сторінку</a><br>
+     <a [routerLink]="['/answer-list',id]" >Перегляд відповідей</a><br>
+     <a [routerLink]="['/create',id]" >Редагувати питання чи додати відповідь</a>
+</div>

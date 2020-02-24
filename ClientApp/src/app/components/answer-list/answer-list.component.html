@@ -1,1 +1,6 @@
-<p>answer-list works!</p>
+<div *ngFor="let answerlist of answer;let i=index" class="list">
+    <h4><span>{{answerlist.text}}</span></h4><br>
+    <i>{{answerlist.author}}</i>
+</div>
+
+

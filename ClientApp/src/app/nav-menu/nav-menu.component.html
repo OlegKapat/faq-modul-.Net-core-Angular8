@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">dotnetangular</a>
+      <a class="navbar-brand" [routerLink]="['/']">Відповіді на часті питання</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -33,6 +33,12 @@
         >
           <a class="nav-link text-dark" [routerLink]="['/create']"><span class="glyphicon glyphicon-th"></span>Створити</a>
         </li>
+        <li
+        class="nav-item"
+        [routerLinkActive]="['link-active']"
+      >
+        <a class="nav-link text-dark" [routerLink]="" (click)="logOut()"><span class="glyphicon glyphicon-th"></span>Вийти</a>
+      </li>
         </ul>
       </div>
     </div>

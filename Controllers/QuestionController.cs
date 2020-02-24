@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using dotnetangular.ViewModel;
 using dotnetangular.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 
 namespace dotnetangular.Controllers
@@ -34,6 +36,7 @@ namespace dotnetangular.Controllers
         }
     
     [HttpPost]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public IActionResult Post([FromBody] Question model) {
         if(model==null){
           return this.BadRequest(new ValidationProblemDetails(this.ModelState));
@@ -54,7 +57,9 @@ public IActionResult Get(int id){
         return NotFound("Не знайдено");
     }
 }
+    
     [HttpPut("{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public IActionResult Put(int id,[FromBody] Question model){
     if(id == model.Id){
     DbContext.Questions.Update(model);
@@ -65,8 +70,9 @@ public IActionResult Get(int id){
         return NotFound("Не знайдено");
     }
     }
-    [Authorize]
+   
     [HttpDelete("{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public IActionResult Delete(int id){
         var deleteId=DbContext.Questions.FirstOrDefault(i=>i.Id==id);
         if(deleteId!=null){

@@ -35,7 +35,7 @@ namespace dotnetangular.Controllers
             var identity = GetIdentity(auth.Name, auth.Password);
             if (identity == null)
             {
-                return BadRequest(new { errorText = "Invalid username or password." });
+                return BadRequest(new { errorText = "Не вірний логін чи пароль" });
             }
  
             var now = DateTime.UtcNow;
@@ -54,8 +54,6 @@ namespace dotnetangular.Controllers
           private ClaimsIdentity GetIdentity(string name, string password)
         {
             var user = DbContext.Users.FirstOrDefault(x => x.Name == name && x.Password == password);
-           
-            Console.WriteLine(user);
             if (user != null)
             {
                 var claims = new List<Claim>

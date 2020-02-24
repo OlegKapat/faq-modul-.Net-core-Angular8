@@ -14,6 +14,7 @@ using dotnetangular.Data;
 using dotnetangular.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetangular
 {
@@ -38,6 +39,7 @@ namespace dotnetangular
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
@@ -91,9 +93,10 @@ namespace dotnetangular
             {
                 app.UseSpaStaticFiles();
             }
-            app.UseAuthentication();
             
             app.UseRouting();
+             app.UseAuthentication();
+             app.UseAuthorization();
             app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseEndpoints(endpoints =>
             {

@@ -20,8 +20,8 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth');
-    headers.append('Authorization', `Bearer ${authToken}`);
-    return this.http.post<TokenResponse>('/api/auth/token',data,{headers}).pipe(map((res)=>{let token=res.token && res;
+    headers.append('Authorization', `Bearer - ${authToken}`);
+    return this.http.post<TokenResponse>('/api/auth/token',data,{headers:headers}).pipe(map((res)=>{let token=res.token && res;
      if(token){
         this.setAuth(res);
         sessionStorage.setItem("Id",res.userId)

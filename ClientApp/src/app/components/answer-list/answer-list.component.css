@@ -1,0 +1,8 @@
+.list{
+max-width: 300px;
+height: auto;
+background-color: rgb(217, 221, 223);
+}
+h4,i{
+  padding: 10px;
+}

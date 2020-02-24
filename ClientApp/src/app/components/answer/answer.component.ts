@@ -1,3 +1,4 @@
+import { switchMap } from 'rxjs/operators';
 import { AnswerService } from './../../shared/interfaces/services/answer.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -23,20 +24,18 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(){
-    this.id=+this.route.snapshot.queryParams['id']
-    this.questionService.selectById(this.id).subscribe(res=>{this.questionTitle=res.title
-      console.log(this.questionTitle);
+    this.route.params.pipe(switchMap(params=>this.questionService.selectById(params['id']))).subscribe(res=>{this.questionTitle=res.title});
 
-    });
   }
   onSubmit(){
-    let data={
+    this.route.params.pipe(switchMap(params=>this.answerService.sendData({
       text:this.form.get('text').value,
       author:this.form.get('author').value,
-      id:this.id
-    }
-    this.answerService.sendData(data).subscribe(res=>console.log(res)
-    )
+      id:+params['id']
+    })
+
+    )).subscribe(()=>console.log("Відповідь успішно додана"))
+
   }
 
 }
